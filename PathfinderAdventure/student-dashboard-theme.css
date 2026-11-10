@@ -1,0 +1,432 @@
+
+/* =========================================
+   PATHFINDER ADVENTURE - STUDENT DASHBOARD
+   Theme: Red, Yellow, Cream, Forest Green
+   ========================================= */
+
+.student-dashboard-page {
+    --pf-red: #C62828;
+    --pf-red-dark: #941B1B;
+    --pf-yellow: #FFC928;
+    --pf-cream: #F8F6EF;
+    --pf-white: #FFFFFF;
+    --pf-green: #263A2D;
+    --pf-green-light: #E7EFE5;
+    --pf-text: #26332A;
+    --pf-muted: #73796F;
+    --pf-border: #E7E2D6;
+
+    background: var(--pf-cream);
+    color: var(--pf-text);
+}
+
+/* General page */
+.student-dashboard-page .dashboard-layout {
+    background: var(--pf-cream);
+}
+
+.student-dashboard-page .main-panel {
+    background: var(--pf-cream);
+}
+
+.student-dashboard-page .dashboard-content {
+    background: var(--pf-cream);
+}
+
+.student-dashboard-page h1,
+.student-dashboard-page h2,
+.student-dashboard-page h3,
+.student-dashboard-page h4 {
+    color: var(--pf-green);
+}
+
+/* Sidebar */
+.student-dashboard-page .sidebar {
+    background: var(--pf-green);
+    color: var(--pf-white);
+    border-right: 0;
+}
+
+.student-dashboard-page .sidebar-brand {
+    color: var(--pf-white);
+}
+
+.student-dashboard-page .brand-icon {
+    background: var(--pf-yellow);
+    color: var(--pf-green);
+    border-radius: 12px;
+}
+
+.student-dashboard-page .brand-text {
+    color: var(--pf-white);
+}
+
+.student-dashboard-page .sidebar-label {
+    color: #C8D3C8;
+}
+
+.student-dashboard-page .sidebar-nav .nav-link {
+    color: #E7EDE5;
+    border-radius: 10px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.student-dashboard-page .sidebar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--pf-yellow);
+}
+
+.student-dashboard-page .sidebar-nav .nav-link.active,
+.student-dashboard-page .sidebar-nav .nav-link[aria-current="page"] {
+    background: var(--pf-red);
+    color: var(--pf-white);
+}
+
+.student-dashboard-page .sidebar-help {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    color: var(--pf-white);
+}
+
+.student-dashboard-page .sidebar-logout,
+.student-dashboard-page .logout-btn {
+    color: #FFFFFF;
+}
+
+.student-dashboard-page .sidebar-logout:hover,
+.student-dashboard-page .logout-btn:hover {
+    background: rgba(198, 40, 40, 0.3);
+    color: var(--pf-yellow);
+}
+
+/* Top bar */
+.student-dashboard-page .topbar {
+    background: var(--pf-cream);
+    border-bottom: 1px solid var(--pf-border);
+}
+
+.student-dashboard-page .breadcrumb {
+    color: var(--pf-muted);
+}
+
+.student-dashboard-page .topbar-account {
+    color: var(--pf-green);
+}
+
+.student-dashboard-page .account-avatar {
+    background: var(--pf-red);
+    color: var(--pf-white);
+}
+
+/* Welcome banner */
+.student-dashboard-page .welcome-banner {
+    position: relative;
+    overflow: hidden;
+    background: var(--pf-red);
+    color: var(--pf-white);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 8px 22px rgba(100, 30, 20, 0.12);
+}
+
+.student-dashboard-page .welcome-banner h1,
+.student-dashboard-page .welcome-banner h2,
+.student-dashboard-page .welcome-banner h3,
+.student-dashboard-page .welcome-banner p {
+    color: var(--pf-white);
+}
+
+.student-dashboard-page .welcome-copy {
+    color: var(--pf-white);
+}
+
+.student-dashboard-page .welcome-decoration {
+    color: var(--pf-yellow);
+}
+
+.student-dashboard-page .compass-circle {
+    border-color: rgba(255, 201, 40, 0.55);
+    color: var(--pf-yellow);
+}
+
+/* Buttons */
+.student-dashboard-page .primary-button,
+.student-dashboard-page .level-button {
+    background: var(--pf-red);
+    color: var(--pf-white);
+    border: 1px solid var(--pf-red);
+    border-radius: 10px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.student-dashboard-page .primary-button:hover,
+.student-dashboard-page .level-button:hover {
+    background: var(--pf-red-dark);
+    border-color: var(--pf-red-dark);
+    color: var(--pf-white);
+    transform: translateY(-2px);
+}
+
+.student-dashboard-page .welcome-banner .primary-button {
+    background: var(--pf-yellow);
+    color: var(--pf-green);
+    border-color: var(--pf-yellow);
+}
+
+.student-dashboard-page .welcome-banner .primary-button:hover {
+    background: #FFDA59;
+    color: var(--pf-green);
+}
+
+/* Summary cards */
+.student-dashboard-page .summary-card {
+    background: var(--pf-white);
+    border: 1px solid var(--pf-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(38, 58, 45, 0.04);
+}
+
+.student-dashboard-page .summary-icon {
+    border-radius: 12px;
+}
+
+.student-dashboard-page .icon-maroon,
+.student-dashboard-page .icon-red {
+    background: #FCE8E6;
+    color: var(--pf-red);
+}
+
+.student-dashboard-page .icon-gold {
+    background: #FFF3C4;
+    color: #805D00;
+}
+
+.student-dashboard-page .icon-green {
+    background: var(--pf-green-light);
+    color: var(--pf-green);
+}
+
+.student-dashboard-page .summary-label {
+    color: var(--pf-muted);
+}
+
+.student-dashboard-page .summary-value {
+    color: var(--pf-green);
+}
+
+.student-dashboard-page .mini-progress {
+    background: #EEEAE0;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.student-dashboard-page .mini-progress-fill {
+    background: var(--pf-red);
+    border-radius: 99px;
+}
+
+/* Section headings */
+.student-dashboard-page .content-section {
+    color: var(--pf-text);
+}
+
+.student-dashboard-page .section-heading {
+    color: var(--pf-green);
+}
+
+.student-dashboard-page .section-count {
+    background: #FFF0B5;
+    color: var(--pf-green);
+    border-radius: 99px;
+}
+
+/* Pathfinder level cards */
+.student-dashboard-page .level-card {
+    background: var(--pf-white);
+    border: 1px solid var(--pf-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(38, 58, 45, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.student-dashboard-page .level-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 22px rgba(38, 58, 45, 0.09);
+}
+
+.student-dashboard-page .level-symbol {
+    background: #FCE8E6;
+    color: var(--pf-red);
+    border-radius: 14px;
+}
+
+.student-dashboard-page .level-medium .level-symbol {
+    background: #FFF3C4;
+    color: #805D00;
+}
+
+.student-dashboard-page .level-advanced .level-symbol {
+    background: var(--pf-green-light);
+    color: var(--pf-green);
+}
+
+.student-dashboard-page .difficulty {
+    color: var(--pf-muted);
+}
+
+.student-dashboard-page .easy-badge {
+    background: #FCE8E6;
+    color: var(--pf-red-dark);
+}
+
+.student-dashboard-page .medium-badge {
+    background: #FFF3C4;
+    color: #805D00;
+}
+
+.student-dashboard-page .advanced-badge {
+    background: var(--pf-green-light);
+    color: var(--pf-green);
+}
+
+.student-dashboard-page .status {
+    color: var(--pf-green);
+}
+
+.student-dashboard-page .level-score {
+    color: var(--pf-green);
+}
+
+.student-dashboard-page .level-unavailable {
+    background: #F0EEE8;
+    color: var(--pf-muted);
+    border-color: var(--pf-border);
+}
+
+/* Overall progress panel */
+.student-dashboard-page .progress-panel {
+    background: var(--pf-white);
+    border: 1px solid var(--pf-border);
+    border-left: 5px solid var(--pf-yellow);
+    border-radius: 16px;
+}
+
+.student-dashboard-page .progress-panel-icon {
+    background: #FFF3C4;
+    color: #805D00;
+    border-radius: 12px;
+}
+
+.student-dashboard-page .progress-panel-copy {
+    color: var(--pf-text);
+}
+
+.student-dashboard-page .wide-progress {
+    background: #EEEAE0;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.student-dashboard-page .wide-progress > * {
+    border-radius: 99px;
+}
+
+.student-dashboard-page #progress-label-secondary {
+    color: var(--pf-muted);
+}
+
+/* Mistakes review */
+.student-dashboard-page .review-panel {
+    background: #FFF7E0;
+    border: 1px solid #F0D77E;
+    border-radius: 16px;
+}
+
+.student-dashboard-page .review-icon {
+    background: var(--pf-yellow);
+    color: var(--pf-green);
+    border-radius: 12px;
+}
+
+.student-dashboard-page .review-note {
+    color: #65552B;
+}
+
+.student-dashboard-page .mistake-card {
+    background: var(--pf-white);
+    border: 1px solid var(--pf-border);
+    border-radius: 14px;
+}
+
+.student-dashboard-page .mistake-card-top {
+    border-bottom: 1px solid var(--pf-border);
+}
+
+.student-dashboard-page .mistake-number {
+    background: #FCE8E6;
+    color: var(--pf-red);
+}
+
+.student-dashboard-page .mistake-level {
+    color: var(--pf-green);
+}
+
+.student-dashboard-page .mistake-category {
+    color: var(--pf-muted);
+}
+
+.student-dashboard-page .mistake-answer {
+    border-radius: 10px;
+}
+
+.student-dashboard-page .wrong-answer {
+    background: #FCE8E6;
+    color: var(--pf-red-dark);
+}
+
+.student-dashboard-page .correct-answer {
+    background: var(--pf-green-light);
+    color: var(--pf-green);
+}
+
+/* Pathfinder fact and gallery cards */
+.student-dashboard-page .dashboard-content img {
+    max-width: 100%;
+}
+
+.student-dashboard-page .dashboard-content .gallery-card,
+.student-dashboard-page .dashboard-content .fact-card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.student-dashboard-page .dashboard-footer {
+    color: var(--pf-muted);
+    border-top: 1px solid var(--pf-border);
+}
+
+/* Links and focus states */
+.student-dashboard-page a {
+    transition: color 0.2s ease;
+}
+
+.student-dashboard-page a:focus-visible,
+.student-dashboard-page button:focus-visible {
+    outline: 3px solid var(--pf-yellow);
+    outline-offset: 3px;
+}
+
+/* Responsive safety */
+@media (max-width: 760px) {
+    .student-dashboard-page .welcome-banner {
+        border-radius: 16px;
+    }
+
+    .student-dashboard-page .summary-card,
+    .student-dashboard-page .level-card,
+    .student-dashboard-page .progress-panel,
+    .student-dashboard-page .review-panel {
+        border-radius: 14px;
+    }
+}

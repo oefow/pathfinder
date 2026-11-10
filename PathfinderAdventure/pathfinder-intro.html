@@ -1,0 +1,1467 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Learning Center | Pathfinder Adventure</title>
+
+    <!-- SAME DESIGN FILES AS CLASS SELECTION -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="student-dashboard.css">
+    <link rel="stylesheet" href="student-dashboard-theme.css">
+    <link rel="stylesheet" href="student-dashboard-redesign.css">
+    <link rel="stylesheet" href="class-selection.css">
+
+    <style>
+        /* LEARNING CENTER PAGE */
+
+        .learning-center-page {
+            background: var(--cream, #f7f4e9);
+            color: var(--text, #24372c);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .learning-center-page *,
+        .learning-center-page *::before,
+        .learning-center-page *::after {
+            box-sizing: border-box;
+        }
+
+        .learning-center-page .main-panel {
+            min-width: 0;
+            transition: width .3s ease, margin-left .3s ease;
+        }
+
+        .learning-center-page .dashboard-content {
+            width: 100%;
+            min-width: 0;
+            padding: 25px;
+        }
+
+        .learning-center-page .lc-main {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+        }
+
+        /* DESKTOP SIDEBAR COLLAPSE */
+
+        @media (min-width: 761px) {
+            .learning-center-page .dashboard-layout.sidebar-minimized .main-panel {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .learning-center-page .dashboard-layout.sidebar-minimized .lc-main {
+                width: min(1450px, 100%);
+            }
+        }
+
+        /* VIEWS */
+
+        .learning-center-page .lc-view {
+            display: none;
+        }
+
+        .learning-center-page .lc-view.active {
+            display: block;
+        }
+
+        /* INTRO */
+
+        .learning-center-page .class-intro {
+            padding: 55px 0 42px;
+            text-align: center;
+        }
+
+        .learning-center-page .class-intro h1 {
+            margin: 18px 0 14px;
+            color: var(--forest-dark);
+            font-size: clamp(32px, 5vw, 54px);
+            line-height: 1.12;
+            letter-spacing: -1.8px;
+        }
+
+        .learning-center-page .class-intro h1 span {
+            color: var(--red);
+        }
+
+        .learning-center-page .class-intro > p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #687368;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* CATEGORY AND CLASS GRIDS */
+
+        .learning-center-page .class-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .learning-center-page .class-card {
+            width: 100%;
+            min-width: 0;
+            text-align: left;
+        }
+
+        .learning-center-page .class-card.category-card {
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .learning-center-page .class-card.category-card:focus-visible {
+            outline: 3px solid var(--yellow);
+            outline-offset: 4px;
+        }
+
+        .learning-center-page .category-emblem {
+            display: grid;
+            place-items: center;
+            width: 59px;
+            height: 59px;
+            margin: 23px 0 18px;
+            border: 1px solid #e9dfc7;
+            border-radius: 18px 18px 18px 5px;
+            background: #f5edda;
+            color: var(--forest);
+            font-size: 29px;
+        }
+
+        .learning-center-page .category-card h3 {
+            min-height: 54px;
+            font-size: 19px;
+            line-height: 1.35;
+        }
+
+        .learning-center-page .category-card > p {
+            min-height: 60px;
+        }
+
+        .learning-center-page .review-status {
+            color: #39814b;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* BACK BUTTON */
+
+        .learning-center-page .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin: 20px 0 0;
+            padding: 10px 15px;
+            border: 1px solid #e4ddc9;
+            border-radius: 9px;
+            background: var(--paper);
+            color: var(--forest);
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .learning-center-page .back-link:hover {
+            background: #f5e9c5;
+        }
+
+        /* LESSON */
+
+        .learning-center-page .lesson-panel {
+            padding: 30px;
+            border: 1px solid #e9e3d4;
+            border-radius: 18px;
+            background: var(--paper);
+            box-shadow: 0 5px 16px #25352208;
+        }
+
+        .learning-center-page .lesson-panel h2 {
+            margin: 0 0 15px;
+            color: var(--forest-dark);
+            font-size: 24px;
+        }
+
+        .learning-center-page .lesson-panel h3 {
+            margin: 24px 0 8px;
+            color: var(--forest);
+            font-size: 17px;
+        }
+
+        .learning-center-page .lesson-panel p {
+            color: #687368;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .learning-center-page .lesson-class-label {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 7px 11px;
+            border-radius: 7px;
+            background: #f5edda;
+            color: var(--forest);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .learning-center-page .review-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 20px;
+            padding: 13px 20px;
+            border: none;
+            border-radius: 9px;
+            background: var(--forest);
+            color: white;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .learning-center-page .review-button:hover {
+            background: var(--red);
+        }
+
+        .learning-center-page .review-button:disabled {
+            background: #39814b;
+            cursor: default;
+        }
+
+        .learning-center-page .lesson-status {
+            margin-top: 15px;
+            color: #39814b;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .learning-center-page .class-notice {
+            margin-top: 25px;
+        }
+
+        .learning-center-page .class-page-footer {
+            padding-top: 15px;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 850px) {
+            .learning-center-page .class-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .learning-center-page .lc-main {
+                width: 100%;
+            }
+        }
+
+        /* MOBILE SIDEBAR - SAME AS CLASS SELECTION */
+
+        @media (max-width: 760px) {
+            .learning-center-page .main-panel {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .learning-center-page .dashboard-content {
+                padding: 16px;
+            }
+
+            .learning-center-page .sidebar-toggle {
+                display: none;
+            }
+
+            .learning-center-page .mobile-menu {
+                display: inline-flex;
+            }
+
+            .learning-center-page .sidebar {
+                position: fixed;
+                z-index: 1001;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                height: 100dvh;
+                overflow-y: auto;
+                transform: translateX(-100%);
+                transition: transform .3s ease;
+            }
+
+            .learning-center-page .sidebar.sidebar-open {
+                transform: translateX(0);
+            }
+
+            .learning-center-page .sidebar-overlay {
+                position: fixed;
+                z-index: 1000;
+                inset: 0;
+                background: rgba(0, 0, 0, .45);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity .3s ease, visibility .3s ease;
+            }
+
+            .learning-center-page .sidebar-overlay.overlay-visible {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .learning-center-page .class-intro {
+                padding: 42px 0 34px;
+            }
+        }
+
+        /* SMALL MOBILE */
+
+        @media (max-width: 520px) {
+            .learning-center-page .dashboard-content {
+                padding: 13px;
+            }
+
+            .learning-center-page .class-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .learning-center-page .class-intro {
+                padding: 35px 0 30px;
+            }
+
+            .learning-center-page .class-intro h1 {
+                font-size: 34px;
+                letter-spacing: -1px;
+            }
+
+            .learning-center-page .class-intro > p {
+                font-size: 14px;
+            }
+
+            .learning-center-page .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .learning-center-page .lesson-panel {
+                padding: 20px;
+            }
+        }
+
+
+        /* QUIZ CONFIRMATION AND CLASS QUIZ MENU */
+        .learning-center-page .quiz-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(10, 28, 21, .72);
+        }
+        .learning-center-page .quiz-modal-overlay[hidden] { display: none !important; }
+        .learning-center-page .quiz-modal {
+            width: min(430px, 100%);
+            padding: 32px 26px;
+            border-radius: 18px;
+            background: var(--paper, #fffdf6);
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,.25);
+        }
+        .learning-center-page .quiz-modal-icon {
+            display: grid; place-items: center; width: 60px; height: 60px;
+            margin: 0 auto 16px; border-radius: 17px;
+            background: var(--yellow, #f4c542); color: var(--forest, #173b2c);
+            font-size: 28px;
+        }
+        .learning-center-page .quiz-modal h2 { margin: 10px 0; color: var(--forest-dark, #173b2c); }
+        .learning-center-page .quiz-modal p { color: #687368; line-height: 1.7; margin-bottom: 22px; }
+        .learning-center-page .quiz-action-button {
+            width: 100%; padding: 13px 18px; border: 0; border-radius: 9px;
+            font: inherit; font-size: 13px; font-weight: 800; cursor: pointer;
+        }
+        .learning-center-page .quiz-action-primary { background: var(--forest, #173b2c); color: #fff; }
+        .learning-center-page .quiz-action-primary:hover { background: var(--red, #c92525); }
+        .learning-center-page .quiz-action-secondary { margin-top: 10px; background: #eee9dc; color: var(--forest-dark, #173b2c); }
+        .learning-center-page .quiz-category-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+        .learning-center-page .quiz-category-card { padding: 23px; border: 1px solid #e9e3d4; border-radius: 15px; background: var(--paper, #fffdf6); }
+        .learning-center-page .quiz-category-card h3 { margin: 12px 0 8px; color: var(--forest-dark); }
+        .learning-center-page .quiz-category-card p { color: #687368; font-size: 13px; line-height: 1.6; }
+        .learning-center-page .quiz-status { display: inline-block; padding: 6px 10px; border-radius: 20px; background: #eee9dc; color: #777; font-size: 10px; font-weight: 800; }
+        .learning-center-page .quiz-status.unlocked { background: #e1f0e3; color: #28723b; }
+        .learning-center-page .quiz-status.passed { background: #fff0c2; color: #886000; }
+        .learning-center-page .quiz-category-card button { width: 100%; margin-top: 12px; padding: 12px; border: 0; border-radius: 8px; background: var(--forest); color: #fff; font-weight: 800; cursor: pointer; }
+        .learning-center-page .quiz-category-card button:disabled { background: #d5d5d5; color: #777; cursor: not-allowed; }
+        .learning-center-page .quiz-panel { max-width: 850px; margin: 0 auto; padding: 26px; border: 1px solid #e9e3d4; border-radius: 16px; background: var(--paper, #fffdf6); }
+        .learning-center-page .quiz-panel-top { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 800; }
+        .learning-center-page .quiz-progress-track { height: 8px; margin: 15px 0 25px; overflow: hidden; border-radius: 20px; background: #e9e3d4; }
+        .learning-center-page #quiz-progress-fill { height: 100%; width: 0; background: var(--red); transition: width .2s ease; }
+        .learning-center-page .quiz-answer-options { display: grid; gap: 11px; }
+        .learning-center-page .quiz-answer-option { width: 100%; padding: 14px; border: 1px solid #e5dfd0; border-radius: 9px; background: #fff; color: var(--text); text-align: left; font: inherit; cursor: pointer; }
+        .learning-center-page .quiz-answer-option.selected { border: 2px solid var(--forest); background: #f5edda; }
+        .learning-center-page .quiz-review-item { margin: 10px 0; padding: 13px; border-radius: 9px; background: #f5f1e7; line-height: 1.6; }
+        .learning-center-page .quiz-review-item.correct { border-left: 4px solid #39814b; }
+        .learning-center-page .quiz-review-item.incorrect { border-left: 4px solid #c92525; }
+        .learning-center-page .quiz-review-item p { margin: 5px 0; font-size: 13px; }
+        @media (max-width: 600px) { .learning-center-page .quiz-category-grid { grid-template-columns: 1fr; } .learning-center-page .quiz-panel { padding: 18px; } .learning-center-page .quiz-panel-top { flex-direction: column; } }
+
+    </style>
+</head>
+
+<body class="student-dashboard-page class-selection-page learning-center-page">
+
+<div class="dashboard-layout" id="top">
+
+    <!-- MOBILE OVERLAY -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-icon">P</div>
+
+            <div class="brand-text">
+                <h2>PATHFINDER</h2>
+                <span>ADVENTURE SYSTEM</span>
+            </div>
+
+            <button class="mobile-close" id="close-sidebar"
+                    type="button" aria-label="Close menu">×</button>
+        </div>
+
+        <div class="sidebar-label">MAIN MENU</div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+
+            <a href="student-dashboard.html" class="nav-link">
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="class-selection.html" class="nav-link">
+                <span class="nav-icon">⚑</span>
+                <span>Pathfinder Classes</span>
+            </a>
+
+            <a href="pathfinder-intro.html" class="nav-link active">
+                <span class="nav-icon">▤</span>
+                <span>Learning Center</span>
+            </a>
+
+            <a href="student-dashboard.html#progress" class="nav-link">
+                <span class="nav-icon">◷</span>
+                <span>My Progress</span>
+            </a>
+
+            <a href="student-dashboard.html#mistakes" class="nav-link">
+                <span class="nav-icon">✓</span>
+                <span>Mistakes Review</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label resources-label">LEARNING</div>
+
+        <nav class="sidebar-nav" aria-label="Learning navigation">
+            <a href="pathfinder-intro.html" class="nav-link">
+                <span class="nav-icon">▧</span>
+                <span>Study Materials</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-help">
+                <div class="help-symbol">✦</div>
+                <strong>Keep exploring!</strong>
+                <p>Learn new skills and grow as a Pathfinder.</p>
+                <a href="pathfinder-intro.html">Continue learning →</a>
+            </div>
+
+            <button class="sidebar-logout logout-btn" type="button">
+                <span class="nav-icon">⇥</span>
+                <span>Logout</span>
+            </button>
+
+        </div>
+    </aside>
+
+    <!-- MAIN PANEL -->
+    <main class="main-panel">
+
+        <!-- TOPBAR -->
+        <header class="topbar adventure-topbar">
+
+            <div class="topbar-left">
+
+                <button class="sidebar-toggle" id="toggle-sidebar"
+                        type="button"
+                        aria-label="Minimize sidebar"
+                        aria-expanded="true"
+                        title="Minimize sidebar">
+                    <span id="sidebar-toggle-icon">◀</span>
+                </button>
+
+                <button class="mobile-menu" id="open-sidebar"
+                        type="button" aria-label="Open menu">
+                    ☰
+                </button>
+
+                <div class="topbar-heading">
+                    <div class="breadcrumb">
+                        Home <span>/</span> Learning Center
+                    </div>
+
+                    <p class="topbar-subtitle">
+                        Explore your Pathfinder study materials
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="topbar-account">
+                <div class="account-avatar">P</div>
+
+                <div class="account-details">
+                    <strong>Pathfinder Student</strong>
+                    <span>Student Account</span>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <div class="dashboard-content adventure-content">
+
+            <main class="lc-main">
+
+                <!-- VIEW 1: CLASS SELECTION -->
+                <section class="lc-view active" id="class-view">
+
+                    <section class="class-intro">
+
+                        <span class="eyebrow">
+                            <span class="eyebrow-dot"></span>
+                            YOUR PATHFINDER LEARNING JOURNEY
+                        </span>
+
+                        <h1>
+                            Explore Your <span>Learning Center</span>
+                        </h1>
+
+                        <p>
+                            Choose your Pathfinder class to explore its
+                            learning categories and review materials.
+                        </p>
+
+                        <div class="intro-note">
+                            <span class="note-icon">✦</span>
+                            Select your class to begin studying.
+                        </div>
+
+                    </section>
+
+                    <section class="classes-section">
+
+                        <div class="section-heading">
+                            <div>
+                                <span class="section-kicker">CHOOSE YOUR CLASS</span>
+                                <h2>Available Pathfinder Classes</h2>
+                            </div>
+
+                            <span class="class-count">6 CLASSES</span>
+                        </div>
+
+                        <div class="class-grid">
+
+                            <article class="class-card friend">
+                                <div class="card-top">
+                                    <span class="class-number">01</span>
+                                    <span class="class-age">AGE 10</span>
+                                </div>
+
+                                <div class="class-emblem">✦</div>
+                                <span class="class-label">PATHFINDER CLASS</span>
+                                <h3>Friend</h3>
+                                <p>Begin your Pathfinder learning journey.</p>
+
+                                <div class="class-footer">
+                                    <div class="color-name"><i></i> Blue</div>
+                                    <button class="select-class"
+                                            type="button"
+                                            data-class="Friend">
+                                        Select Class <span>→</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <article class="class-card companion">
+                                <div class="card-top">
+                                    <span class="class-number">02</span>
+                                    <span class="class-age">AGE 11</span>
+                                </div>
+
+                                <div class="class-emblem">⌖</div>
+                                <span class="class-label">PATHFINDER CLASS</span>
+                                <h3>Companion</h3>
+                                <p>Continue developing your knowledge and skills.</p>
+
+                                <div class="class-footer">
+                                    <div class="color-name"><i></i> Red</div>
+                                    <button class="select-class"
+                                            type="button"
+                                            data-class="Companion">
+                                        Select Class <span>→</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <article class="class-card explorer">
+                                <div class="card-top">
+                                    <span class="class-number">03</span>
+                                    <span class="class-age">AGE 12</span>
+                                </div>
+
+                                <div class="class-emblem">◇</div>
+                                <span class="class-label">PATHFINDER CLASS</span>
+                                <h3>Explorer</h3>
+                                <p>Discover new experiences and practical skills.</p>
+
+                                <div class="class-footer">
+                                    <div class="color-name"><i></i> Green</div>
+                                    <button class="select-class"
+                                            type="button"
+                                            data-class="Explorer">
+                                        Select Class <span>→</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <article class="class-card ranger">
+                                <div class="card-top">
+                                    <span class="class-number">04</span>
+                                    <span class="class-age">AGE 13</span>
+                                </div>
+
+                                <div class="class-emblem">✧</div>
+                                <span class="class-label">PATHFINDER CLASS</span>
+                                <h3>Ranger</h3>
+                                <p>Build your knowledge and practical abilities.</p>
+
+                                <div class="class-footer">
+                                    <div class="color-name"><i></i> Silver</div>
+                                    <button class="select-class"
+                                            type="button"
+                                            data-class="Ranger">
+                                        Select Class <span>→</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <article class="class-card voyager">
+                                <div class="card-top">
+                                    <span class="class-number">05</span>
+                                    <span class="class-age">AGE 14</span>
+                                </div>
+
+                                <div class="class-emblem">➤</div>
+                                <span class="class-label">PATHFINDER CLASS</span>
+                                <h3>Voyager</h3>
+                                <p>Take on new Pathfinder learning challenges.</p>
+
+                                <div class="class-footer">
+                                    <div class="color-name"><i></i> Burgundy</div>
+                                    <button class="select-class"
+                                            type="button"
+                                            data-class="Voyager">
+                                        Select Class <span>→</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <article class="class-card guide">
+                                <div class="card-top">
+                                    <span class="class-number">06</span>
+                                    <span class="class-age">AGE 15</span>
+                                </div>
+
+                                <div class="class-emblem">⚑</div>
+                                <span class="class-label">PATHFINDER CLASS</span>
+                                <h3>Guide</h3>
+                                <p>Develop your skills and leadership abilities.</p>
+
+                                <div class="class-footer">
+                                    <div class="color-name"><i></i> Gold</div>
+                                    <button class="select-class"
+                                            type="button"
+                                            data-class="Guide">
+                                        Select Class <span>→</span>
+                                    </button>
+                                </div>
+                            </article>
+
+                        </div>
+                    </section>
+
+                </section>
+
+                <!-- VIEW 2: CATEGORIES -->
+                <section class="lc-view" id="category-view">
+
+                    <button class="back-link" id="back-to-classes"
+                            type="button">
+                        ← Back to Classes
+                    </button>
+
+                    <section class="class-intro">
+                        <span class="eyebrow">
+                            <span class="eyebrow-dot"></span>
+                            PATHFINDER STUDY MATERIALS
+                        </span>
+
+                        <h1 id="selected-class-title">
+                            <span>Friend</span> Class
+                        </h1>
+
+                        <p>
+                            Choose a learning category to open its review material.
+                        </p>
+                    </section>
+
+                    <section class="classes-section">
+                        <div class="section-heading">
+                            <div>
+                                <span class="section-kicker">STUDY CATEGORIES</span>
+                                <h2>Learning Categories</h2>
+                            </div>
+                        </div>
+
+                        <div class="class-grid" id="category-grid"></div>
+                    </section>
+
+                </section>
+
+                <!-- VIEW 3: LESSON -->
+                <section class="lc-view" id="lesson-view">
+
+                    <button class="back-link" id="back-to-categories"
+                            type="button">
+                        ← Back to Categories
+                    </button>
+
+                    <section class="class-intro">
+                        <span class="eyebrow">
+                            <span class="eyebrow-dot"></span>
+                            REVIEW YOUR KNOWLEDGE
+                        </span>
+
+                        <h1 id="lesson-title">
+                            <span>Lesson</span> Material
+                        </h1>
+
+                        <p id="lesson-subtitle">
+                            Pathfinder study material
+                        </p>
+                    </section>
+
+                    <article class="lesson-panel">
+                        <span class="lesson-class-label" id="lesson-class-label">
+                            FRIEND CLASS
+                        </span>
+
+                        <div id="lesson-body"></div>
+
+                        <div class="lesson-status" id="lesson-status"></div>
+
+                        <button class="review-button" id="mark-reviewed"
+                                type="button">
+                            ✓ Mark as Reviewed
+                        </button>
+                    </article>
+
+                    <div class="class-notice">
+                        <span class="notice-icon">ⓘ</span>
+                        <div>
+                            <strong>Study Material Reminder</strong>
+                            <p>
+                                These are introductory review notes.
+                                Refer to the official Pathfinder class manual
+                                for the exact requirements and activities.
+                            </p>
+                        </div>
+                    </div>
+
+                </section>
+
+
+
+                <!-- CLASS CONFIRMATION POPUP -->
+                <div class="quiz-modal-overlay" id="class-confirm-modal" hidden>
+                    <div class="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="confirm-class-title">
+                        <div class="quiz-modal-icon">✦</div>
+                        <span class="section-kicker">PATHFINDER ADVENTURE</span>
+                        <h2 id="confirm-class-title">Ready to begin?</h2>
+                        <p id="confirm-class-message">Are you ready to explore this class?</p>
+                        <button type="button" id="confirm-class-yes" class="quiz-action-button quiz-action-primary">Yes, Let's Go!</button>
+                        <button type="button" id="confirm-class-no" class="quiz-action-button quiz-action-secondary">No, Go Back</button>
+                    </div>
+                </div>
+
+                <!-- VIEW 4: SELECTED CLASS QUIZZES -->
+                <section class="lc-view" id="quiz-category-view">
+                    <button class="back-link" id="back-to-classes-from-quiz" type="button">← Back to Classes</button>
+                    <section class="class-intro">
+                        <span class="eyebrow"><span class="eyebrow-dot"></span> PATHFINDER KNOWLEDGE CHECK</span>
+                        <h1 id="quiz-class-heading"><span>Friend</span> Quizzes</h1>
+                        <p>Select Quiz 1 to begin. Pass each quiz to unlock the next one.</p>
+                    </section>
+                    <section class="classes-section">
+                        <div class="section-heading">
+                            <div><span class="section-kicker">YOUR QUIZ JOURNEY</span><h2>Available Quizzes</h2></div>
+                            <span class="class-count">5 QUIZZES</span>
+                        </div>
+                        <div class="quiz-category-grid" id="quiz-category-grid"></div>
+                    </section>
+                    <button class="back-link" id="open-study-materials" type="button">Open Study Materials</button>
+                </section>
+
+                <!-- VIEW 5: QUIZ QUESTIONS -->
+                <section class="lc-view" id="quiz-taking-view">
+                    <button class="back-link" id="back-to-quiz-list" type="button">← Back to Quizzes</button>
+                    <section class="class-intro">
+                        <span class="eyebrow">PATHFINDER KNOWLEDGE CHECK</span>
+                        <h1 id="active-quiz-heading">Quiz 1</h1>
+                        <p id="active-quiz-description">Answer all 10 questions.</p>
+                    </section>
+                    <article class="quiz-panel">
+                        <div class="quiz-panel-top"><strong id="quiz-question-count">Question 1 of 10</strong><span id="quiz-current-score">Score: 0</span></div>
+                        <div class="quiz-progress-track"><div id="quiz-progress-fill"></div></div>
+                        <h2 id="quiz-question-text"></h2>
+                        <div id="quiz-answer-options" class="quiz-answer-options"></div>
+                        <p id="quiz-answer-feedback" class="quiz-answer-feedback"></p>
+                        <button type="button" id="quiz-submit-answer" class="quiz-action-button quiz-action-primary" disabled>Submit Answer</button>
+                    </article>
+                </section>
+
+                <!-- VIEW 6: QUIZ RESULT -->
+                <section class="lc-view" id="quiz-result-view">
+                    <section class="class-intro">
+                        <span class="eyebrow">QUIZ COMPLETED</span>
+                        <h1 id="quiz-result-heading">Your Result</h1>
+                        <p id="quiz-result-description"></p>
+                    </section>
+                    <article class="quiz-panel">
+                        <h2 id="quiz-result-score"></h2>
+                        <p id="quiz-result-status"></p>
+                        <div id="quiz-result-review"></div>
+                        <button type="button" id="quiz-result-back" class="quiz-action-button quiz-action-primary">Back to Quizzes</button>
+                        <button type="button" id="quiz-result-retry" class="quiz-action-button quiz-action-secondary">Retry Quiz</button>
+                    </article>
+                </section>
+
+                <footer class="class-page-footer">
+                    PATHFINDER ADVENTURE • LEARN • GROW • SERVE
+                </footer>
+
+            </main>
+
+        </div>
+    </main>
+</div>
+
+<!-- SIDEBAR TOGGLE: SAME LOGIC AS CLASS SELECTION -->
+<script>
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("sidebar-overlay");
+    const layout = document.querySelector(".dashboard-layout");
+
+    const openButton = document.getElementById("open-sidebar");
+    const closeButton = document.getElementById("close-sidebar");
+
+    const toggleButton = document.getElementById("toggle-sidebar");
+    const toggleIcon = document.getElementById("sidebar-toggle-icon");
+
+    function openSidebar() {
+        sidebar.classList.add("sidebar-open");
+        overlay.classList.add("overlay-visible");
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove("sidebar-open");
+        overlay.classList.remove("overlay-visible");
+    }
+
+    openButton.addEventListener("click", openSidebar);
+    closeButton.addEventListener("click", closeSidebar);
+    overlay.addEventListener("click", closeSidebar);
+
+    toggleButton.addEventListener("click", () => {
+        if (window.innerWidth <= 760) return;
+
+        const minimized =
+            layout.classList.toggle("sidebar-minimized");
+
+        toggleButton.setAttribute(
+            "aria-expanded",
+            String(!minimized)
+        );
+
+        toggleButton.setAttribute(
+            "aria-label",
+            minimized ? "Restore sidebar" : "Minimize sidebar"
+        );
+
+        toggleButton.title =
+            minimized ? "Restore sidebar" : "Minimize sidebar";
+
+        toggleIcon.textContent =
+            minimized ? "▶" : "◀";
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 760) {
+            closeSidebar();
+        }
+    });
+
+    document.querySelectorAll(".sidebar-nav a").forEach(link => {
+        link.addEventListener("click", () => {
+            if (window.innerWidth <= 760) {
+                closeSidebar();
+            }
+        });
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeSidebar();
+        }
+    });
+</script>
+
+<!-- LEARNING CENTER LOGIC -->
+<script>
+    const categories = [
+        {
+            name: "General",
+            icon: "📘",
+            description: "Introduction to the Pathfinder program.",
+            content: `
+                <h2>General</h2>
+                <p>
+                    This category introduces the Pathfinder organization,
+                    its purpose, and the basic information every Pathfinder
+                    should understand.
+                </p>
+                <h3>What to Review</h3>
+                <p>
+                    Review the background of the Pathfinder Club, its
+                    organization, and the responsibilities of its members.
+                </p>
+            `
+        },
+        {
+            name: "Spiritual Discovery",
+            icon: "📖",
+            description: "Explore faith, the Bible, and spiritual growth.",
+            content: `
+                <h2>Spiritual Discovery</h2>
+                <p>
+                    Spiritual Discovery focuses on understanding the Bible,
+                    developing faith, and building a closer relationship
+                    with God.
+                </p>
+                <h3>What to Review</h3>
+                <p>
+                    Review the Bible lessons, spiritual activities, and
+                    requirements included in your official class manual.
+                </p>
+            `
+        },
+        {
+            name: "Serving Others",
+            icon: "🤝",
+            description: "Learn about service and helping your community.",
+            content: `
+                <h2>Serving Others</h2>
+                <p>
+                    This category teaches the importance of helping people
+                    and participating in community service.
+                </p>
+                <h3>What to Review</h3>
+                <p>
+                    Think about practical ways to help your family,
+                    church, and community.
+                </p>
+            `
+        },
+        {
+            name: "Friendship Development",
+            icon: "👥",
+            description: "Build positive relationships and teamwork.",
+            content: `
+                <h2>Friendship Development</h2>
+                <p>
+                    This category focuses on building healthy friendships,
+                    showing respect, communicating properly, and working
+                    with other people.
+                </p>
+                <h3>What to Review</h3>
+                <p>
+                    Review the lessons about respect, cooperation,
+                    friendship, and positive relationships.
+                </p>
+            `
+        },
+        {
+            name: "Health and Fitness",
+            icon: "💪",
+            description: "Learn how to take care of your health.",
+            content: `
+                <h2>Health and Fitness</h2>
+                <p>
+                    Health and Fitness encourages Pathfinders to develop
+                    healthy habits through exercise, proper nutrition,
+                    and personal care.
+                </p>
+                <h3>What to Review</h3>
+                <p>
+                    Review the importance of physical activity,
+                    cleanliness, and healthy daily habits.
+                </p>
+            `
+        },
+        {
+            name: "Organization and Leadership Development",
+            icon: "⭐",
+            description: "Understand leadership and Pathfinder organization.",
+            content: `
+                <h2>Organization and Leadership Development</h2>
+                <p>
+                    This category introduces leadership, responsibility,
+                    teamwork, and the organization of the Pathfinder Club.
+                </p>
+                <h3>What to Review</h3>
+                <p>
+                    Review leadership principles and the responsibilities
+                    of Pathfinder members and leaders.
+                </p>
+            `
+        },
+        {
+            name: "Nature Study",
+            icon: "🌿",
+            description: "Discover nature and the environment.",
+            content: `
+                <h2>Nature Study</h2>
+                <p>
+                    Nature Study helps Pathfinders observe and appreciate
+                    the natural world, including plants, animals, and
+                    the environment.
+                </p>
+                <h3>What to Review</h3>
+                <p>
+                    Explore the nature topics and activities found in
+                    your official Pathfinder class requirements.
+                </p>
+            `
+        },
+        {
+            name: "Outdoor Life",
+            icon: "🏕️",
+            description: "Learn outdoor skills and safety.",
+            content: `
+                <h2>Outdoor Life</h2>
+                <p>
+                    Outdoor Life introduces activities and skills that
+                    help Pathfinders become more prepared and responsible
+                    when participating in outdoor activities.
+                </p>
+                <h3>What to Review</h3>
+                <p>
+                    Review outdoor safety, preparation, and the skills
+                    required for outdoor activities.
+                </p>
+            `
+        },
+        {
+            name: "Lifestyle Enrichment",
+            icon: "🎨",
+            description: "Develop useful skills and personal interests.",
+            content: `
+                <h2>Lifestyle Enrichment</h2>
+                <p>
+                    Lifestyle Enrichment encourages Pathfinders to develop
+                    useful abilities, explore interests, and learn skills
+                    that can be applied in everyday life.
+                </p>
+                <h3>What to Review</h3>
+                <p>
+                    Explore the activities and interests included in
+                    your official class manual.
+                </p>
+            `
+        }
+    ];
+
+    const classView = document.getElementById("class-view");
+    const categoryView = document.getElementById("category-view");
+    const lessonView = document.getElementById("lesson-view");
+
+    const categoryGrid = document.getElementById("category-grid");
+
+    const selectedClassTitle =
+        document.getElementById("selected-class-title");
+
+    const lessonTitle = document.getElementById("lesson-title");
+    const lessonSubtitle = document.getElementById("lesson-subtitle");
+    const lessonClassLabel = document.getElementById("lesson-class-label");
+    const lessonBody = document.getElementById("lesson-body");
+    const lessonStatus = document.getElementById("lesson-status");
+    const markReviewedButton = document.getElementById("mark-reviewed");
+
+    let selectedClass = "";
+    let selectedCategory = "";
+
+    const quizCategoryView = document.getElementById("quiz-category-view");
+    const quizTakingView = document.getElementById("quiz-taking-view");
+    const quizResultView = document.getElementById("quiz-result-view");
+
+    function showView(view) {
+        [classView, categoryView, lessonView, quizCategoryView, quizTakingView, quizResultView]
+            .forEach(item => item.classList.remove("active"));
+        view.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /* CLASS SELECTION: CONFIRM FIRST, THEN OPEN QUIZ MENU */
+    const classConfirmModal = document.getElementById("class-confirm-modal");
+    const confirmClassMessage = document.getElementById("confirm-class-message");
+    let pendingClass = "";
+
+    document.querySelectorAll(".select-class").forEach(button => {
+        button.addEventListener("click", () => {
+            pendingClass = button.dataset.class;
+            confirmClassMessage.textContent = `You selected the ${pendingClass} class. Are you ready to explore its quizzes?`;
+            classConfirmModal.hidden = false;
+        });
+    });
+
+    document.getElementById("confirm-class-no").addEventListener("click", () => {
+        classConfirmModal.hidden = true;
+        pendingClass = "";
+    });
+
+    classConfirmModal.addEventListener("click", event => {
+        if (event.target === classConfirmModal) {
+            classConfirmModal.hidden = true;
+            pendingClass = "";
+        }
+    });
+
+    document.getElementById("confirm-class-yes").addEventListener("click", () => {
+        if (!pendingClass) return;
+        selectedClass = pendingClass;
+        pendingClass = "";
+        classConfirmModal.hidden = true;
+        document.getElementById("quiz-class-heading").innerHTML = `<span>${selectedClass}</span> Quizzes`;
+        renderQuizCategories();
+        showView(quizCategoryView);
+    });
+
+    /* REVIEW PROGRESS */
+
+    function getReviewKey(className, categoryName) {
+        return `pathfinderReviewed_${className}_${categoryName}`;
+    }
+
+    function isReviewed(className, categoryName) {
+        return localStorage.getItem(
+            getReviewKey(className, categoryName)
+        ) === "true";
+    }
+
+    /* DISPLAY CATEGORIES */
+
+    function renderCategories() {
+        categoryGrid.innerHTML = "";
+
+        categories.forEach((category, index) => {
+            const reviewed = isReviewed(selectedClass, category.name);
+
+            const card = document.createElement("article");
+            card.className = "class-card category-card";
+
+            const number = String(index + 1).padStart(2, "0");
+
+            card.innerHTML = `
+                <div class="card-top">
+                    <span class="class-number">${number}</span>
+                    <span class="class-age">
+                        ${reviewed ? "REVIEWED" : "STUDY"}
+                    </span>
+                </div>
+
+                <div class="category-emblem">${category.icon}</div>
+
+                <span class="class-label">LEARNING CATEGORY</span>
+                <h3>${category.name}</h3>
+
+                <p>${category.description}</p>
+
+                <div class="class-footer">
+                    <span class="review-status">
+                        ${reviewed ? "✓ Reviewed" : "Not reviewed yet"}
+                    </span>
+
+                    <button class="select-class" type="button">
+                        Open Material <span>→</span>
+                    </button>
+                </div>
+            `;
+
+            card.querySelector("button").addEventListener("click", () => {
+                openLesson(category);
+            });
+
+            categoryGrid.appendChild(card);
+        });
+    }
+
+    /* OPEN LESSON */
+
+    function openLesson(category) {
+        selectedCategory = category.name;
+
+        lessonTitle.innerHTML =
+            `<span>${category.name}</span>`;
+
+        lessonSubtitle.textContent =
+            `${selectedClass} Class - Study Material`;
+
+        lessonClassLabel.textContent =
+            `${selectedClass.toUpperCase()} CLASS`;
+
+        lessonBody.innerHTML = category.content;
+
+        updateLessonStatus();
+        showView(lessonView);
+    }
+
+    /* UPDATE REVIEW STATUS */
+
+    function updateLessonStatus() {
+        const reviewed = isReviewed(
+            selectedClass,
+            selectedCategory
+        );
+
+        if (reviewed) {
+            lessonStatus.textContent =
+                "✓ You have reviewed this material.";
+
+            markReviewedButton.textContent = "✓ Reviewed";
+            markReviewedButton.disabled = true;
+        } else {
+            lessonStatus.textContent = "";
+            markReviewedButton.textContent = "✓ Mark as Reviewed";
+            markReviewedButton.disabled = false;
+        }
+    }
+
+    /* MARK AS REVIEWED */
+
+    markReviewedButton.addEventListener("click", () => {
+        localStorage.setItem(
+            getReviewKey(selectedClass, selectedCategory),
+            "true"
+        );
+
+        updateLessonStatus();
+    });
+
+    /* BACK BUTTONS */
+
+    document.getElementById("back-to-classes")
+        .addEventListener("click", () => {
+            showView(classView);
+        });
+
+
+    document.getElementById("back-to-categories")
+        .addEventListener("click", () => {
+            renderCategories();
+            showView(categoryView);
+        });
+
+    /* QUIZ SYSTEM: 5 QUIZZES PER CLASS, 10 QUESTIONS EACH */
+    const QUIZZES_PER_CLASS = 5;
+    const QUESTIONS_PER_QUIZ = 10;
+    const PASSING_SCORE = 7;
+    let activeQuizNumber = 1;
+    let activeQuestionIndex = 0;
+    let activeQuestions = [];
+    let selectedQuizAnswer = null;
+    let quizAnswers = [];
+    let quizScore = 0;
+
+    /* Add the verified class-specific question sets here when ready. */
+    const pathfinderQuizQuestions = {
+        Friend: {}, Companion: {}, Explorer: {},
+        Ranger: {}, Voyager: {}, Guide: {}
+    };
+
+    function getQuizProgress(className) {
+        try {
+            return JSON.parse(localStorage.getItem(`pathfinderQuizProgress_${className}`)) || { completed: [], scores: {} };
+        } catch (error) {
+            return { completed: [], scores: {} };
+        }
+    }
+
+    function saveQuizProgress(className, progress) {
+        localStorage.setItem(`pathfinderQuizProgress_${className}`, JSON.stringify(progress));
+    }
+
+    function isQuizUnlocked(className, quizNumber) {
+        if (quizNumber === 1) return true;
+        return getQuizProgress(className).completed.includes(quizNumber - 1);
+    }
+
+    function renderQuizCategories() {
+        const grid = document.getElementById("quiz-category-grid");
+        const progress = getQuizProgress(selectedClass);
+        grid.innerHTML = "";
+
+        for (let number = 1; number <= QUIZZES_PER_CLASS; number++) {
+            const unlocked = isQuizUnlocked(selectedClass, number);
+            const passed = progress.completed.includes(number);
+            const questions = pathfinderQuizQuestions[selectedClass]?.[number] || [];
+            const hasQuestions = questions.length === QUESTIONS_PER_QUIZ;
+            const status = passed ? "PASSED" : unlocked ? (hasQuestions ? "UNLOCKED" : "QUESTIONS COMING SOON") : "LOCKED";
+            const card = document.createElement("article");
+            card.className = "quiz-category-card";
+            card.innerHTML = `
+                <span class="quiz-status ${passed ? "passed" : unlocked ? "unlocked" : ""}">${status}</span>
+                <h3>Quiz ${number}</h3>
+                <p>10 Questions<br>Passing Score: 7/10</p>
+                <p>${passed ? `Your best passing score: ${progress.scores[number]}/10` : unlocked ? "Start this quiz when its verified questions are available." : "Pass the previous quiz to unlock this quiz."}</p>
+                <button type="button" ${(!unlocked || !hasQuestions) ? "disabled" : ""}>${passed ? "Retake Quiz" : hasQuestions ? "Start Quiz" : "Unavailable"}</button>`;
+            if (unlocked && hasQuestions) card.querySelector("button").addEventListener("click", () => startPathfinderQuiz(number));
+            grid.appendChild(card);
+        }
+    }
+
+    function startPathfinderQuiz(number) {
+        activeQuizNumber = number;
+        activeQuestionIndex = 0;
+        selectedQuizAnswer = null;
+        quizAnswers = [];
+        quizScore = 0;
+        activeQuestions = pathfinderQuizQuestions[selectedClass][number];
+        if (!Array.isArray(activeQuestions) || activeQuestions.length !== QUESTIONS_PER_QUIZ) {
+            alert("This quiz is not available yet. Its verified question set has not been added.");
+            return;
+        }
+        document.getElementById("active-quiz-heading").textContent = `Quiz ${number}`;
+        document.getElementById("active-quiz-description").textContent = `${selectedClass} Class · 10 Questions`;
+        showView(quizTakingView);
+        displayPathfinderQuestion();
+    }
+
+    function displayPathfinderQuestion() {
+        const question = activeQuestions[activeQuestionIndex];
+        selectedQuizAnswer = null;
+        document.getElementById("quiz-question-count").textContent = `Question ${activeQuestionIndex + 1} of 10`;
+        document.getElementById("quiz-current-score").textContent = `Score: ${quizScore}`;
+        document.getElementById("quiz-progress-fill").style.width = `${((activeQuestionIndex + 1) / 10) * 100}%`;
+        document.getElementById("quiz-question-text").textContent = question.question;
+        document.getElementById("quiz-answer-feedback").textContent = "";
+        const options = document.getElementById("quiz-answer-options");
+        options.innerHTML = "";
+        const submit = document.getElementById("quiz-submit-answer");
+        submit.disabled = true;
+        submit.textContent = "Submit Answer";
+        question.options.forEach((option, index) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "quiz-answer-option";
+            button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+            button.addEventListener("click", () => {
+                options.querySelectorAll("button").forEach(item => item.classList.remove("selected"));
+                button.classList.add("selected");
+                selectedQuizAnswer = index;
+                submit.disabled = false;
+            });
+            options.appendChild(button);
+        });
+    }
+
+    document.getElementById("quiz-submit-answer").addEventListener("click", () => {
+        if (selectedQuizAnswer === null) return;
+        const question = activeQuestions[activeQuestionIndex];
+        const correct = selectedQuizAnswer === question.answer;
+        if (correct) quizScore++;
+        quizAnswers.push({
+            question: question.question,
+            options: question.options,
+            selected: selectedQuizAnswer,
+            correct: question.answer,
+            explanation: question.explanation || "",
+            isCorrect: correct
+        });
+        activeQuestionIndex++;
+        if (activeQuestionIndex < QUESTIONS_PER_QUIZ) displayPathfinderQuestion();
+        else finishPathfinderQuiz();
+    });
+
+    function finishPathfinderQuiz() {
+        const passed = quizScore >= PASSING_SCORE;
+        const progress = getQuizProgress(selectedClass);
+        if (passed) {
+            if (!progress.completed.includes(activeQuizNumber)) progress.completed.push(activeQuizNumber);
+            progress.scores[activeQuizNumber] = Math.max(progress.scores[activeQuizNumber] || 0, quizScore);
+            saveQuizProgress(selectedClass, progress);
+        }
+        document.getElementById("quiz-result-heading").textContent = passed ? "Congratulations!" : "Keep Practicing!";
+        document.getElementById("quiz-result-description").textContent = passed ? "You passed this quiz. The next quiz is now unlocked." : "You need at least 7/10 to pass. You can retry this quiz.";
+        document.getElementById("quiz-result-score").textContent = `Your Score: ${quizScore}/10`;
+        document.getElementById("quiz-result-status").textContent = passed ? "PASSED" : "NOT PASSED";
+        const review = document.getElementById("quiz-result-review");
+        review.innerHTML = "<h3>Answer Review</h3>";
+        quizAnswers.forEach((answer, index) => {
+            const row = document.createElement("div");
+            row.className = `quiz-review-item ${answer.isCorrect ? "correct" : "incorrect"}`;
+            const yourAnswer = answer.options[answer.selected];
+            const correctAnswer = answer.options[answer.correct];
+            row.innerHTML = `<strong>Question ${index + 1} — ${answer.isCorrect ? "Correct" : "Incorrect"}</strong><p>${answer.question}</p><p>Your answer: ${yourAnswer}</p><p>Correct answer: ${correctAnswer}</p><p>${answer.explanation}</p>`;
+            review.appendChild(row);
+        });
+        document.getElementById("quiz-result-retry").hidden = passed;
+        showView(quizResultView);
+    }
+
+    document.getElementById("back-to-classes-from-quiz").addEventListener("click", () => showView(classView));
+    document.getElementById("back-to-quiz-list").addEventListener("click", () => { renderQuizCategories(); showView(quizCategoryView); });
+    document.getElementById("quiz-result-back").addEventListener("click", () => { renderQuizCategories(); showView(quizCategoryView); });
+    document.getElementById("quiz-result-retry").addEventListener("click", () => startPathfinderQuiz(activeQuizNumber));
+    document.getElementById("open-study-materials").addEventListener("click", () => {
+        selectedClassTitle.innerHTML = `<span>${selectedClass}</span> Class`;
+        renderCategories();
+        showView(categoryView);
+    });
+</script>
+
+<!-- EXISTING AUTHENTICATION / LOGOUT -->
+<script type="module" src="auth.js"></script>
+
+</body>
+</html>

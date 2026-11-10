@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathfinder Adventure</title>
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+
+    <header>
+        <h1>Pathfinder Adventure</h1>
+    </header>
+
+    <main class="hero">
+        <h2>Learn. Explore. <span>Serve. Lead.</span></h2>
+
+        <p>
+            Welcome to Patchfinder Adventure, an interactive learning and quiz platform
+            designed to help Pathfinders learn, practice, and improve their knowledge.
+        </p>
+
+        <div class="buttons">
+            <a href="register.html" class="btn" id="getStarted">
+                Get Started <span>→</span>
+            </a>
+        </div>
+    </main>
+
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <p>Preparing your adventure...</p>
+    </div>
+
+    <script>
+        const getStarted = document.getElementById("getStarted");
+        const loadingScreen = document.getElementById("loadingScreen");
+
+        getStarted.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            loadingScreen.classList.add("active");
+
+            setTimeout(function () {
+                window.location.href = "register.html";
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>

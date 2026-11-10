@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pathfinder Classes | Pathfinder Adventure</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="student-dashboard.css">
+    <link rel="stylesheet" href="student-dashboard-theme.css">
+    <link rel="stylesheet" href="student-dashboard-redesign.css">
+    <link rel="stylesheet" href="class-selection.css">
+</head>
+
+<body class="student-dashboard-page class-selection-page">
+
+<div class="dashboard-layout" id="top">
+
+    <!-- MOBILE OVERLAY -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-icon">P</div>
+
+            <div class="brand-text">
+                <h2>PATHFINDER</h2>
+                <span>ADVENTURE SYSTEM</span>
+            </div>
+
+            <button class="mobile-close" id="close-sidebar"
+                    type="button" aria-label="Close menu">×</button>
+        </div>
+
+        <div class="sidebar-label">MAIN MENU</div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+
+            <a href="student-dashboard.html" class="nav-link">
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="class-selection.html" class="nav-link active">
+                <span class="nav-icon">⚑</span>
+                <span>Pathfinder Classes</span>
+            </a>
+
+            <a href="pathfinder-intro.html" class="nav-link">
+                <span class="nav-icon">▤</span>
+                <span>Learning Center</span>
+            </a>
+
+            <a href="student-dashboard.html#progress" class="nav-link">
+                <span class="nav-icon">◷</span>
+                <span>My Progress</span>
+            </a>
+
+            <a href="student-dashboard.html#mistakes" class="nav-link">
+                <span class="nav-icon">✓</span>
+                <span>Mistakes Review</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label resources-label">LEARNING</div>
+
+        <nav class="sidebar-nav" aria-label="Learning navigation">
+            <a href="pathfinder-intro.html" class="nav-link">
+                <span class="nav-icon">▧</span>
+                <span>Study Materials</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-help">
+                <div class="help-symbol">✦</div>
+                <strong>Keep exploring!</strong>
+                <p>Learn new skills and grow as a Pathfinder.</p>
+                <a href="pathfinder-intro.html">Continue learning →</a>
+            </div>
+
+            <button class="sidebar-logout logout-btn" type="button">
+                <span class="nav-icon">⇥</span>
+                <span>Logout</span>
+            </button>
+
+        </div>
+    </aside>
+
+
+    <!-- MAIN PANEL -->
+    <main class="main-panel">
+
+        <!-- TOPBAR -->
+        <header class="topbar adventure-topbar">
+
+            <div class="topbar-left">
+
+                <button class="sidebar-toggle" id="toggle-sidebar"
+                        type="button"
+                        aria-label="Minimize sidebar"
+                        aria-expanded="true"
+                        title="Minimize sidebar">
+                    <span id="sidebar-toggle-icon">◀</span>
+                </button>
+
+                <button class="mobile-menu" id="open-sidebar"
+                        type="button" aria-label="Open menu">
+                    ☰
+                </button>
+
+                <div class="topbar-heading">
+                    <div class="breadcrumb">
+                        Home <span>/</span> Pathfinder Classes
+                    </div>
+
+                    <p class="topbar-subtitle">
+                        Choose your Pathfinder learning class
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="topbar-account">
+                <div class="account-avatar">P</div>
+
+                <div class="account-details">
+                    <strong>Pathfinder Student</strong>
+                    <span>Student Account</span>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+        <div class="dashboard-content adventure-content">
+
+            <main class="class-main">
+
+                <!-- INTRO -->
+                <section class="class-intro">
+
+                    <span class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        YOUR PATHFINDER LEARNING JOURNEY
+                    </span>
+
+                    <h1>
+                        Choose Your <span>Pathfinder Class</span>
+                    </h1>
+
+                    <p>
+                        Select your Pathfinder class to begin your learning
+                        journey. Each class has its own activities and
+                        challenges designed for different age groups.
+                    </p>
+
+                    <div class="intro-note">
+                        <span class="note-icon">✦</span>
+                        Choose your class to continue your adventure.
+                    </div>
+
+                </section>
+
+
+                <!-- CLASSES -->
+                <section class="classes-section">
+
+                    <div class="section-heading">
+                        <div>
+                            <span class="section-kicker">FIND YOUR PATH</span>
+                            <h2>Available Pathfinder Classes</h2>
+                        </div>
+
+                        <span class="class-count">6 CLASSES</span>
+                    </div>
+
+
+                    <div class="class-grid">
+
+                        <!-- FRIEND -->
+                        <article class="class-card friend">
+
+                            <div class="card-top">
+                                <span class="class-number">01</span>
+                                <span class="class-age">AGE 10</span>
+                            </div>
+
+                            <div class="class-emblem">✦</div>
+
+                            <span class="class-label">PATHFINDER CLASS</span>
+                            <h3>Friend</h3>
+
+                            <p>
+                                Begin your Pathfinder adventure and discover
+                                the basic values and activities of the club.
+                            </p>
+
+                            <div class="class-footer">
+                                <div class="color-name">
+                                    <i></i> Blue
+                                </div>
+
+                                <button class="select-class"
+                                        type="button"
+                                        data-class="Friend">
+                                    Select Class <span>→</span>
+                                </button>
+                            </div>
+
+                        </article>
+
+
+                        <!-- COMPANION -->
+                        <article class="class-card companion">
+
+                            <div class="card-top">
+                                <span class="class-number">02</span>
+                                <span class="class-age">AGE 11</span>
+                            </div>
+
+                            <div class="class-emblem">⌖</div>
+
+                            <span class="class-label">PATHFINDER CLASS</span>
+                            <h3>Companion</h3>
+
+                            <p>
+                                Continue learning and develop your knowledge
+                                through Pathfinder activities.
+                            </p>
+
+                            <div class="class-footer">
+                                <div class="color-name">
+                                    <i></i> Red
+                                </div>
+
+                                <button class="select-class"
+                                        type="button"
+                                        data-class="Companion">
+                                    Select Class <span>→</span>
+                                </button>
+                            </div>
+
+                        </article>
+
+
+                        <!-- EXPLORER -->
+                        <article class="class-card explorer">
+
+                            <div class="card-top">
+                                <span class="class-number">03</span>
+                                <span class="class-age">AGE 12</span>
+                            </div>
+
+                            <div class="class-emblem">◇</div>
+
+                            <span class="class-label">PATHFINDER CLASS</span>
+                            <h3>Explorer</h3>
+
+                            <p>
+                                Discover new experiences and explore
+                                practical Pathfinder skills.
+                            </p>
+
+                            <div class="class-footer">
+                                <div class="color-name">
+                                    <i></i> Green
+                                </div>
+
+                                <button class="select-class"
+                                        type="button"
+                                        data-class="Explorer">
+                                    Select Class <span>→</span>
+                                </button>
+                            </div>
+
+                        </article>
+
+
+                        <!-- RANGER -->
+                        <article class="class-card ranger">
+
+                            <div class="card-top">
+                                <span class="class-number">04</span>
+                                <span class="class-age">AGE 13</span>
+                            </div>
+
+                            <div class="class-emblem">✧</div>
+
+                            <span class="class-label">PATHFINDER CLASS</span>
+                            <h3>Ranger</h3>
+
+                            <p>
+                                Build your knowledge, confidence, and
+                                practical abilities as a Pathfinder.
+                            </p>
+
+                            <div class="class-footer">
+                                <div class="color-name">
+                                    <i></i> Silver
+                                </div>
+
+                                <button class="select-class"
+                                        type="button"
+                                        data-class="Ranger">
+                                    Select Class <span>→</span>
+                                </button>
+                            </div>
+
+                        </article>
+
+
+                        <!-- VOYAGER -->
+                        <article class="class-card voyager">
+
+                            <div class="card-top">
+                                <span class="class-number">05</span>
+                                <span class="class-age">AGE 14</span>
+                            </div>
+
+                            <div class="class-emblem">➤</div>
+
+                            <span class="class-label">PATHFINDER CLASS</span>
+                            <h3>Voyager</h3>
+
+                            <p>
+                                Move forward in your learning journey and
+                                take on new Pathfinder challenges.
+                            </p>
+
+                            <div class="class-footer">
+                                <div class="color-name">
+                                    <i></i> Burgundy
+                                </div>
+
+                                <button class="select-class"
+                                        type="button"
+                                        data-class="Voyager">
+                                    Select Class <span>→</span>
+                                </button>
+                            </div>
+
+                        </article>
+
+
+                        <!-- GUIDE -->
+                        <article class="class-card guide">
+
+                            <div class="card-top">
+                                <span class="class-number">06</span>
+                                <span class="class-age">AGE 15</span>
+                            </div>
+
+                            <div class="class-emblem">⚑</div>
+
+                            <span class="class-label">PATHFINDER CLASS</span>
+                            <h3>Guide</h3>
+
+                            <p>
+                                Continue developing your skills and
+                                demonstrate leadership through service.
+                            </p>
+
+                            <div class="class-footer">
+                                <div class="color-name">
+                                    <i></i> Gold
+                                </div>
+
+                                <button class="select-class"
+                                        type="button"
+                                        data-class="Guide">
+                                    Select Class <span>→</span>
+                                </button>
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+
+                <!-- NOTICE -->
+                <div class="class-notice">
+                    <span class="notice-icon">ⓘ</span>
+
+                    <div>
+                        <strong>Before selecting your class</strong>
+
+                        <p>
+                            Make sure you choose the correct Pathfinder class.
+                            Your selection will be used to open the
+                            corresponding learning activities.
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- FOOTER -->
+                <footer class="class-page-footer">
+                    PATHFINDER ADVENTURE • LEARN • GROW • SERVE
+                </footer>
+
+            </main>
+
+        </div>
+    </main>
+</div>
+
+
+<!-- SELECTION TOAST -->
+<div class="selection-toast" id="selectionToast">
+    <div class="toast-check">✓</div>
+
+    <div>
+        <strong>Class Selected</strong>
+        <p>Your Pathfinder class has been selected.</p>
+    </div>
+</div>
+
+
+<!-- EXISTING CLASS SELECTION LOGIC -->
+<script src="class-selection.js"></script>
+
+
+<!-- SIDEBAR TOGGLE -->
+<script>
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("sidebar-overlay");
+    const layout = document.querySelector(".dashboard-layout");
+
+    const openButton = document.getElementById("open-sidebar");
+    const closeButton = document.getElementById("close-sidebar");
+
+    const toggleButton = document.getElementById("toggle-sidebar");
+    const toggleIcon = document.getElementById("sidebar-toggle-icon");
+
+
+    function openSidebar() {
+        sidebar.classList.add("sidebar-open");
+        overlay.classList.add("overlay-visible");
+    }
+
+
+    function closeSidebar() {
+        sidebar.classList.remove("sidebar-open");
+        overlay.classList.remove("overlay-visible");
+    }
+
+
+    openButton.addEventListener("click", openSidebar);
+    closeButton.addEventListener("click", closeSidebar);
+    overlay.addEventListener("click", closeSidebar);
+
+
+    toggleButton.addEventListener("click", () => {
+
+        if (window.innerWidth <= 760) return;
+
+        const minimized =
+            layout.classList.toggle("sidebar-minimized");
+
+        toggleButton.setAttribute(
+            "aria-expanded",
+            String(!minimized)
+        );
+
+        toggleButton.setAttribute(
+            "aria-label",
+            minimized ? "Restore sidebar" : "Minimize sidebar"
+        );
+
+        toggleButton.title =
+            minimized ? "Restore sidebar" : "Minimize sidebar";
+
+        toggleIcon.textContent =
+            minimized ? "▶" : "◀";
+
+    });
+
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 760) {
+            closeSidebar();
+        }
+    });
+
+
+    document.querySelectorAll(".sidebar-nav a").forEach(link => {
+        link.addEventListener("click", () => {
+            if (window.innerWidth <= 760) {
+                closeSidebar();
+            }
+        });
+    });
+
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeSidebar();
+        }
+    });
+</script>
+
+</body>
+</html>

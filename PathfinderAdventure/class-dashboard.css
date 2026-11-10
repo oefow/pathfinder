@@ -1,0 +1,247 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --red: #d92f35;
+    --red-dark: #a91f28;
+    --yellow: #ffc83d;
+    --dark: #171b24;
+    --muted: #697386;
+    --background: #f5f6fa;
+    --white: #ffffff;
+    --border: #e8eaf0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--background);
+    color: var(--dark);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.topbar {
+    min-height: 70px;
+    padding: 16px 7%;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.topbar span {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--red);
+}
+
+.back-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.back-link:hover {
+    color: var(--red);
+}
+
+.container {
+    width: min(1100px, 88%);
+    margin: 45px auto 70px;
+}
+
+.welcome {
+    background: linear-gradient(120deg, #a91f28, #e34143);
+    color: var(--white);
+    padding: 48px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome::after {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border: 35px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    right: -45px;
+    bottom: -110px;
+}
+
+.eyebrow {
+    color: var(--yellow);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+}
+
+.welcome h1 {
+    font-size: clamp(30px, 5vw, 44px);
+    margin-bottom: 12px;
+}
+
+.welcome > p:last-child {
+    max-width: 600px;
+    line-height: 1.7;
+    font-size: 14px;
+    color: #ffe9e9;
+}
+
+.progress-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 24px;
+}
+
+.progress-card h2,
+.section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#progress-text {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.progress-track {
+    height: 10px;
+    background: #eceef3;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--red);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.section {
+    margin-top: 42px;
+}
+
+.section > p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.activity-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 25px;
+    min-height: 170px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(20, 25, 40, 0.07);
+    border-color: #f0c2c3;
+}
+
+.activity-card span {
+    display: inline-block;
+    color: var(--red);
+    background: #fff0f0;
+    padding: 7px 11px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.activity-card h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.activity-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+#quiz-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+#quiz-list > * {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+}
+
+#completed-list {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+@media (max-width: 650px) {
+    .topbar {
+        padding: 15px 5%;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .container {
+        width: 90%;
+        margin-top: 25px;
+    }
+
+    .welcome {
+        padding: 30px 24px;
+    }
+
+    .activity-grid,
+    #quiz-list {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-card {
+        padding: 20px;
+    }
+
+    .section {
+        margin-top: 32px;
+    }
+}

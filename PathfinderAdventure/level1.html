@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Level 1 - Pathfinder Adventure</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="level1-theme.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="dashboard-header">
+
+        <div>
+
+            <h1>Pathfinder Adventure</h1>
+
+            <p class="dashboard-subtitle">
+                Level 1 — Easy
+            </p>
+
+        </div>
+
+        <div class="header-actions">
+
+            <a href="student-dashboard.html"
+               class="back-btn">
+                Dashboard
+            </a>
+
+            <button class="logout-btn">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- GAME -->
+
+    <main class="quiz-container">
+
+
+        <!-- GAME HEADER -->
+
+        <section class="quiz-header">
+
+            <p class="small-title">
+                LEVEL 1 — EASY
+            </p>
+
+            <h2>
+                Pathfinder Basics
+            </h2>
+
+            <p>
+                Test what you learned about the
+                Pathfinder Flag, Pledge, Law,
+                and basic information.
+            </p>
+
+
+            <div class="quiz-progress">
+
+                <div>
+
+                    Question
+
+                    <strong id="question-number">
+                        1
+                    </strong>
+
+                    of
+
+                    <strong id="total-questions">
+                        10
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    Score:
+
+                    <strong id="current-score">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="quiz-progress-bar">
+
+                <div
+                    id="quiz-progress-fill">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUESTION CARD -->
+
+        <section
+            id="question-card"
+            class="question-card">
+
+
+            <div class="question-category"
+                 id="question-category">
+
+                Pathfinder Basics
+
+            </div>
+
+
+            <h2 id="question-text">
+
+                Loading question...
+
+            </h2>
+
+
+            <!-- FLAG VISUAL -->
+
+            <div
+                id="flag-visual"
+                class="quiz-flag">
+
+                <div class="flag-part blue"></div>
+
+                <div class="flag-part white"></div>
+
+                <div class="flag-part blue"></div>
+
+                <div class="flag-part white"></div>
+
+                <div class="flag-emblem">
+
+                    ★
+
+                </div>
+
+            </div>
+
+
+            <!-- ANSWERS -->
+
+            <div
+                id="answers"
+                class="answer-grid">
+            </div>
+
+
+            <!-- FEEDBACK -->
+
+            <div
+                id="feedback"
+                class="answer-feedback">
+            </div>
+
+
+            <button
+                id="next-button"
+                class="btn next-button">
+
+                Next Question
+
+            </button>
+
+
+        </section>
+
+
+        <!-- RESULT -->
+
+        <section
+            id="result-card"
+            class="result-card hidden">
+
+
+            <p class="small-title">
+                LEVEL COMPLETE
+            </p>
+
+
+            <h2>
+                Great Job, Pathfinder!
+            </h2>
+
+
+            <div class="final-score">
+
+                <span>Your Score</span>
+
+                <strong id="final-score">
+                    0/10
+                </strong>
+
+            </div>
+
+
+            <p id="result-message">
+
+                You completed Level 1.
+
+            </p>
+
+
+            <div class="result-stats">
+
+                <div>
+
+                    <strong id="correct-count">
+                        0
+                    </strong>
+
+                    <span>
+                        Correct
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong id="wrong-count">
+                        0
+                    </strong>
+
+                    <span>
+                        Mistakes
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="result-buttons">
+
+                <button
+                    id="retry-button"
+                    class="btn">
+
+                    Try Again
+
+                </button>
+
+
+                <a
+                    href="student-dashboard.html"
+                    class="btn secondary">
+
+                    Back to Dashboard
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script
+        type="module"
+        src="level1.js">
+    </script>
+
+</body>
+
+</html>

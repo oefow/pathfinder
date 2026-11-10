@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Pathfinder Adventure</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+
+<body class="admin-page">
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <div class="brand-icon">P</div>
+                <div>
+                    <h2>Pathfinder</h2>
+                    <p>Adventure Admin</p>
+                </div>
+            </div>
+
+            <div class="sidebar-label">MAIN MENU</div>
+
+            <nav class="admin-nav">
+                
+<a class="admin-nav-link" href="#manage-quiz">
+    <span>✎</span> Manage Quiz 1
+</a>
+
+                <a class="admin-nav-link active" href="#dashboard">
+                    <span>▦</span> Dashboard
+                </a>
+                <a class="admin-nav-link" href="#students">
+                    <span>♙</span> Student Management
+                </a>
+                <a class="admin-nav-link" href="#progress">
+                    <span>▤</span> Student Progress
+                </a>
+                <a class="admin-nav-link" href="#results">
+                    <span>✓</span> Quiz Results
+                </a>
+                <a class="admin-nav-link" href="#mistakes">
+                    <span>!</span> Mistakes &amp; Results
+                </a>
+                <a class="admin-nav-link" href="#reports">
+                    <span>▥</span> Reports
+                </a>
+            </nav>
+
+            <div class="admin-sidebar-bottom">
+                <div class="sidebar-help">
+                    <span>✦</span>
+                    <div>
+                        <strong>Learning together</strong>
+                        <p>Track every Pathfinder's progress.</p>
+                    </div>
+                </div>
+
+                <button class="admin-logout logout-btn" type="button">
+                    <span>↪</span> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="admin-main" id="dashboard">
+
+            <header class="admin-topbar">
+                <div>
+                    <p class="admin-breadcrumb">ADMINISTRATION / OVERVIEW</p>
+                    <h1>Dashboard Overview</h1>
+                    <p class="admin-muted">Monitor students and their learning progress.</p>
+                </div>
+
+                <div class="admin-profile">
+                    <div class="admin-avatar">A</div>
+                    <div>
+                        <strong>Administrator</strong>
+                        <p>Admin Panel</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- WELCOME -->
+            <section class="admin-welcome">
+                <div>
+                    <p class="admin-eyebrow">PATHFINDER ADVENTURE</p>
+                    <h2>Welcome, Administrator!</h2>
+                    <p>Review student activity, quiz scores, and learning progress in one place.</p>
+                </div>
+                <div class="welcome-decoration" aria-hidden="true">✦</div>
+            </section>
+
+            <!-- SUMMARY CARDS -->
+            <section class="admin-stats" aria-label="Student summary">
+
+                <article class="admin-stat-card">
+                    <div class="stat-topline">
+                        <span class="stat-label">TOTAL STUDENTS</span>
+                        <span class="stat-symbol blue-symbol">♙</span>
+                    </div>
+                    <h3 id="total-students">0</h3>
+                    <p>Registered student accounts</p>
+                </article>
+
+                <article class="admin-stat-card">
+                    <div class="stat-topline">
+                        <span class="stat-label">COMPLETED STUDENTS</span>
+                        <span class="stat-symbol green-symbol">✓</span>
+                    </div>
+                    <h3 id="completed-students">0</h3>
+                    <p>Students who completed the required levels</p>
+                </article>
+
+                <article class="admin-stat-card">
+                    <div class="stat-topline">
+                        <span class="stat-label">AVERAGE SCORE</span>
+                        <span class="stat-symbol gold-symbol">★</span>
+                    </div>
+                    <h3><span id="average-score">0</span></h3>
+                    <p>Average based on available student scores</p>
+                </article>
+
+            </section>
+
+            <!-- STUDENT MANAGEMENT -->
+            <section class="admin-panel" id="students">
+                <div class="admin-panel-heading">
+                    <div>
+                        <p class="admin-eyebrow">STUDENT MANAGEMENT</p>
+                        <h2>Student Records</h2>
+                        <p class="admin-muted">View student accounts and their quiz progress.</p>
+                    </div>
+
+                    <span class="records-badge">Student Directory</span>
+                </div>
+
+                <div class="admin-table-toolbar">
+                    <div>
+                        <strong>All Students</strong>
+                        <p class="admin-muted">Review scores and completion status.</p>
+                    </div>
+
+                    <label class="student-search">
+                        <span>⌕</span>
+                        <input
+                            type="search"
+                            id="student-search"
+                            placeholder="Search name or email..."
+                            aria-label="Search students by name or email"
+                        >
+                    </label>
+                </div>
+
+                <div class="admin-table-wrapper">
+                    <table class="admin-student-table">
+                        <thead>
+                            <tr>
+                                <th>STUDENT</th>
+                                <th>EMAIL ADDRESS</th>
+                                <th>LEVEL 1</th>
+                                <th>LEVEL 2</th>
+                                <th>LEVEL 3</th>
+                                <th>PROGRESS</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="student-table">
+                            <tr>
+                                <td colspan="6" class="table-message">
+                                    Loading student records...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="admin-table-footer">
+                    <span>Student information is loaded from your database.</span>
+                </div>
+            </section>
+
+            <!-- STUDENT PROGRESS -->
+            <section class="admin-panel admin-info-panel" id="progress">
+                <div class="admin-panel-heading">
+                    <div>
+                        <p class="admin-eyebrow">LEARNING MONITORING</p>
+                        <h2>Student Progress</h2>
+                        <p class="admin-muted">
+                            Use the student records above to review each learner's level completion.
+                        </p>
+                    </div>
+                    <span class="info-symbol">↗</span>
+                </div>
+                <a class="admin-text-link" href="#students">View student records →</a>
+            </section>
+
+            <!-- QUIZ RESULTS -->
+            <section class="admin-panel admin-info-panel" id="results">
+                <div class="admin-panel-heading">
+                    <div>
+                        <p class="admin-eyebrow">ASSESSMENT MONITORING</p>
+                        <h2>Quiz Results</h2>
+                        <p class="admin-muted">
+                            Student scores shown in the records table depend on the quiz data saved in Firebase.
+                        </p>
+                    </div>
+                    <span class="info-symbol">✓</span>
+                </div>
+                <a class="admin-text-link" href="#students">Review quiz scores →</a>
+            </section>
+
+            <!-- MISTAKES -->
+            <section class="admin-panel admin-info-panel" id="mistakes">
+                <div class="admin-panel-heading">
+                    <div>
+                        <p class="admin-eyebrow">LEARNING SUPPORT</p>
+                        <h2>Mistakes &amp; Results</h2>
+                        <p class="admin-muted">
+                            This section can be connected to your saved quiz mistakes so the administrator can identify topics students need to review.
+                        </p>
+                    </div>
+                    <span class="info-symbol">!</span>
+                </div>
+            </section>
+
+            <!-- REPORTS -->
+            <section class="admin-panel admin-info-panel" id="reports">
+                <div class="admin-panel-heading">
+                    <div>
+                        <p class="admin-eyebrow">REPORTING</p>
+                        <h2>Reports</h2>
+                        <p class="admin-muted">
+                            Student totals, completion summaries, and score reports can be developed here.
+                        </p>
+                    </div>
+                    <span class="info-symbol">▤</span>
+                </div>
+                <a class="admin-text-link" href="#dashboard">Back to overview ↑</a>
+            </section>
+            
+<!-- QUIZ 1 QUESTION MANAGER -->
+<section class="admin-panel" id="manage-quiz">
+
+    <div class="admin-panel-heading">
+        <div>
+            <p class="admin-eyebrow">QUIZ MANAGEMENT</p>
+            <h2>Quiz 1 Question Manager</h2>
+            <p class="admin-muted">
+                Add, edit, and manage questions for Pathfinder Basics.
+            </p>
+        </div>
+        <span class="records-badge">Level 1</span>
+    </div>
+
+    <div class="quiz-manager-form">
+        <h3 id="quiz-form-title">Add New Question</h3>
+
+        <form id="quiz-question-form">
+
+            <input type="hidden" id="quiz-question-id">
+
+            <label for="quiz-category">Question Category</label>
+            <select id="quiz-category" required>
+                <option value="Guess the Pathfinder Flag">
+                    Guess the Pathfinder Flag
+                </option>
+                <option value="Pledge Challenge">Pledge Challenge</option>
+                <option value="Law Challenge">Law Challenge</option>
+                <option value="Quick Quiz">Quick Quiz</option>
+            </select>
+
+            <label for="quiz-type">Question Type</label>
+            <select id="quiz-type" required>
+                <option value="multiple-choice">Multiple Choice</option>
+                <option value="identification">Identification</option>
+            </select>
+
+            <label for="quiz-question">Question</label>
+            <textarea
+                id="quiz-question"
+                rows="3"
+                placeholder="Type your question here..."
+                required
+            ></textarea>
+
+            <div id="quiz-choice-fields">
+                <label for="quiz-option-0">Choice A</label>
+                <input id="quiz-option-0" type="text">
+
+                <label for="quiz-option-1">Choice B</label>
+                <input id="quiz-option-1" type="text">
+
+                <label for="quiz-option-2">Choice C</label>
+                <input id="quiz-option-2" type="text">
+
+                <label for="quiz-option-3">Choice D</label>
+                <input id="quiz-option-3" type="text">
+
+                <label for="quiz-correct-answer">Correct Answer</label>
+                <select id="quiz-correct-answer">
+                    <option value="0">Choice A</option>
+                    <option value="1">Choice B</option>
+                    <option value="2">Choice C</option>
+                    <option value="3">Choice D</option>
+                </select>
+            </div>
+
+            <div id="quiz-identification-fields" hidden>
+                <label for="quiz-identification-answer">
+                    Correct Answer
+                </label>
+                <input
+                    id="quiz-identification-answer"
+                    type="text"
+                    placeholder="Type the expected answer..."
+                >
+                <p class="admin-muted">
+                    Student answers will be checked against this answer.
+                </p>
+            </div>
+
+            <div class="quiz-form-actions">
+                <button type="submit" class="quiz-save-btn">
+                    Save Question
+                </button>
+
+                <button
+                    type="button"
+                    id="quiz-cancel-edit"
+                    class="quiz-cancel-btn"
+                    hidden
+                >
+                    Cancel Edit
+                </button>
+            </div>
+
+            <p id="quiz-form-message" role="status"></p>
+        </form>
+    </div>
+
+    <div class="quiz-question-list">
+        <div class="admin-table-toolbar">
+            <div>
+                <strong>Existing Questions</strong>
+                <p class="admin-muted">
+                    Questions currently saved for Quiz 1.
+                </p>
+            </div>
+            <span id="quiz-question-count" class="records-badge">
+                0 Questions
+            </span>
+        </div>
+
+        <div id="quiz-question-list">
+            <p class="admin-muted">Loading questions...</p>
+        </div>
+    </div>
+</section>
+
+
+            <footer class="admin-footer">
+                Pathfinder Adventure · Administrator Dashboard
+            </footer>
+
+        </main>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+    <script type="module" src="quiz-manager.js"></script>
+</body>
+</html>
